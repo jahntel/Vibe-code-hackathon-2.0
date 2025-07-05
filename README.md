@@ -1,51 +1,272 @@
-# Skillbridge
+# SkillBridge – Learn. Earn. Rise. 🚀
 
-Skillbridge is an e-learning platform designed to bridge the gap between learners and skill development, focusing on tech-based courses for beginners, intermediate, and advanced users.
+A digital bridge where underskilled youth leap from passive potential to active professionals—using microlearning to build skills, verify them, and land microgigs in their own neighborhoods. Built for Africa, built to scale globally.
 
-## Table of Contents
+![SkillBridge Banner](https://via.placeholder.com/1200x300/3B82F6/FFFFFF?text=SkillBridge+-+Learn.+Earn.+Rise.)
 
-- [Skillbridge](#skillbridge)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Contributing](#contributing)
-  - [License](#license)
+## 🌟 Features
 
-## Features
+### 🧑‍🎓 For Learners
+- **Microlearning Tracks**: Short courses like "HTML in 30 mins", "How to budget KES 5000"
+- **Skill Badges**: Completed modules unlock verified skill badges
+- **XP & Leveling System**: Gamified learning with points and level progression
+- **Real-time Progress Tracking**: Detailed analytics on learning patterns
+- **Quiz Validation**: Multi-format quizzes with automatic scoring
+- **Certificate Generation**: Digital certificates for course completion
 
-- **Comprehensive Tech Courses:** Skillbridge offers a comprehensive selection of tech-based courses tailored for beginners, intermediate, and advanced learners.
-- **Structured Learning Paths:** Follow structured learning paths designed to take you from novice to expert in various tech fields, including programming languages, web development, data science, and more.
-- **Hands-On Projects:** Engage in hands-on projects and exercises to apply theoretical knowledge and gain practical skills.
-- **Expert Instructors:** Learn from industry experts and experienced instructors who provide high-quality, engaging content.
-- **Progress Tracking:** Monitor your progress through courses and track your achievements as you advance through different skill levels.
+### 🧑‍🏭 For Businesses
+- **Gig Marketplace**: Post microgigs with geolocation matching
+- **Skill-based Matching**: Find workers based on verified skills and location
+- **Application Management**: Review applications and manage gig workflow
+- **Rating System**: Rate workers and build reputation profiles
 
-## Installation
+### 🛠️ For Admins
+- **Course Management**: Create and edit courses with quiz sets
+- **Badge System**: Design and manage achievement badges
+- **User Analytics**: Platform-wide insights and user management
+- **Content Moderation**: Approve courses and manage platform quality
 
-Skillbridge is a web-based application and can be accessed through a web browser. There is no installation required for users. For developers looking to contribute or customize the platform, follow these steps:
+## 🏗️ Architecture
 
-1. Clone the repository: `git clone https://github.com/skillbridge/skillbridge.git`
-2. Install dependencies: `npm install`
-3. Start the development server: `npm start`
+### Backend (Node.js + Express + MongoDB)
+```
+server/
+├── models/           # MongoDB schemas with Mongoose
+│   ├── User.js      # User model with XP, skills, location
+│   ├── Course.js    # Course model with modules and quizzes
+│   ├── Gig.js       # Gig model with geolocation
+│   ├── Badge.js     # Badge model with criteria system
+│   └── Progress.js  # Detailed progress tracking
+├── routes/          # API endpoints
+│   ├── auth.js      # Authentication & user management
+│   ├── courses.js   # Course CRUD & enrollment
+│   ├── gigs.js      # Gig marketplace & applications
+│   ├── badges.js    # Badge management
+│   └── admin.js     # Admin panel functionality
+├── middleware/      # Authentication & validation
+└── utils/           # Helper functions
+```
 
-## Usage
+### Frontend (React + Vite + Tailwind)
+```
+client/
+├── src/
+│   ├── components/   # Reusable UI components
+│   ├── pages/       # Main application pages
+│   ├── store/       # Zustand state management
+│   ├── api/         # API configuration
+│   └── utils/       # Helper functions
+└── public/          # Static assets
+```
 
-1. Sign up for an account on Skillbridge or log in if you already have one.
-2. Browse the course catalog and enroll in courses that match your skill level and interests.
-3. Follow the structured learning paths or explore individual courses at your own pace.
-4. Complete course modules, exercises, and projects to enhance your skills.
-5. Interact with instructors and fellow learners through discussion forums and live sessions.
-6. Track your progress and earn certificates upon completing courses.
+## 🚀 Quick Start
 
-## Contributing
+### Prerequisites
+- Node.js 18+ and npm
+- MongoDB 5.0+
+- Git
 
-We welcome contributions from the community to improve Skillbridge. If you'd like to contribute, please follow these guidelines:
+### Installation
 
-- Fork the repository and create a new branch for your feature or bug fix: `git checkout -b feature/new-feature`
-- Make your changes and ensure they adhere to the project's coding style and guidelines.
-- Test your changes thoroughly.
-- Submit a pull request explaining the changes you've made and why they're beneficial.
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd skillbridge-app
+```
 
-## License
+2. **Install server dependencies**
+```bash
+cd server
+npm install
+```
 
-Skillbridge is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute the software as long as you include the original copyright notice and license terms.
+3. **Install client dependencies**
+```bash
+cd ../client
+npm install
+```
+
+4. **Environment Setup**
+
+Create `server/.env` from `server/.env.example`:
+```env
+NODE_ENV=development
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/skillbridge
+JWT_SECRET=your-super-secret-jwt-key-here-make-it-very-long-and-random
+CLIENT_URL=http://localhost:5173
+```
+
+Create `client/.env`:
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+5. **Start MongoDB**
+```bash
+# Using MongoDB service
+sudo systemctl start mongod
+
+# Or using Docker
+docker run -d -p 27017:27017 --name skillbridge-mongo mongo:5.0
+```
+
+6. **Start the application**
+
+Terminal 1 (Backend):
+```bash
+cd server
+npm run dev
+```
+
+Terminal 2 (Frontend):
+```bash
+cd client
+npm run dev
+```
+
+7. **Access the application**
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5000/api
+- API Health: http://localhost:5000/api/health
+
+## 📊 Database Schema
+
+### User Model Features
+- **Authentication**: JWT-based with role support (learner, business, admin)
+- **Gamification**: XP points, levels, streaks, achievements
+- **Skills & Badges**: Verified skill tracking with badge system
+- **Geolocation**: MongoDB geospatial queries for nearby matching
+- **Progress Tracking**: Detailed learning analytics
+
+### Key MongoDB Operations
+- **$geoNear**: Find gigs near user's coordinates
+- **$lookup**: Map completed courses to earned badges
+- **$facet**: Dashboard analytics with multiple aggregations
+- **Compound Indexing**: Optimized queries on location, skills, and levels
+
+## 🎯 API Endpoints
+
+### Authentication
+- `POST /auth/register` - User registration
+- `POST /auth/login` - User login
+- `GET /auth/me` - Get current user
+- `PUT /auth/updatedetails` - Update profile
+
+### Courses
+- `GET /courses` - List courses with filtering
+- `GET /courses/:id` - Get course details
+- `POST /courses/:id/enroll` - Enroll in course
+- `PUT /courses/:id/modules/:moduleId/progress` - Update progress
+- `POST /courses/:id/quiz/attempt` - Submit quiz
+
+### Gigs
+- `GET /gigs` - List gigs with geolocation filtering
+- `POST /gigs` - Create gig (business only)
+- `POST /gigs/:id/apply` - Apply to gig
+- `GET /gigs/location/nearby` - Find nearby gigs
+
+### Badges & Progress
+- `GET /badges` - List available badges
+- `GET /badges/user/recommended` - Get recommended badges
+- `GET /progress/analytics` - User learning analytics
+
+## 🔧 Development Features
+
+### Real-time Updates
+- Socket.io integration for live gig notifications
+- Real-time application status updates
+- Live XP and level-up notifications
+
+### Mobile-First Design
+- Responsive Tailwind CSS components
+- Touch-friendly interface
+- Progressive Web App ready
+
+### Performance Optimizations
+- React Query for data caching
+- MongoDB aggregation pipelines
+- Geospatial indexing for location queries
+- Image optimization and lazy loading
+
+## 🧪 Testing
+
+### Backend Testing
+```bash
+cd server
+npm test
+```
+
+### Frontend Testing
+```bash
+cd client
+npm run test
+```
+
+## 📱 Mobile App (Future)
+- React Native version planned
+- Offline course content
+- Push notifications for gig matches
+
+## 🌍 Deployment
+
+### Backend (Render/Railway)
+1. Connect GitHub repository
+2. Add environment variables
+3. Deploy automatically on push
+
+### Frontend (Vercel/Netlify)
+1. Connect GitHub repository
+2. Set build command: `npm run build`
+3. Set publish directory: `dist`
+
+### Database (MongoDB Atlas)
+1. Create cluster
+2. Add connection string to environment
+3. Configure network access
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🚀 Roadmap
+
+### Phase 1: MVP (Current)
+- [x] User authentication & profiles
+- [x] Course creation & enrollment
+- [x] Gig marketplace
+- [x] XP & badge system
+- [x] Basic admin panel
+
+### Phase 2: Enhanced Features
+- [ ] Payment integration (M-Pesa, Stripe)
+- [ ] Advanced analytics dashboard
+- [ ] Mentor system
+- [ ] Course certificates
+- [ ] Mobile app
+
+### Phase 3: Scale & Growth
+- [ ] Multi-language support
+- [ ] Advanced AI recommendations
+- [ ] Enterprise features
+- [ ] International expansion
+
+## 📞 Support
+
+For support, email support@skillbridge.co.ke or join our Slack community.
+
+## 🎉 Built With Love for Africa
+
+SkillBridge is designed specifically for the African market, addressing real challenges in skills development and employment. Our mission is to bridge the gap between potential and opportunity.
+
+---
+
+**🌟 Ready to start your SkillBridge journey? [Get Started Now](http://localhost:5173) 🌟**
