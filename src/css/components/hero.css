@@ -1,0 +1,141 @@
+.hero-container {
+  /* margin: 4rem; */
+  padding: 5rem 5rem;
+  margin-inline: 15rem;
+  padding-top: 5rem;
+  padding-right: 5rem;
+  top: 50px;
+  /* position: absolute; */
+}
+.hero-text {
+  background-color: var(--white95);
+  border-radius: 5px;
+  /* padding: 5rem 5rem; */
+  padding-top: 0.5rem;
+  /* padding-bottom: 1rem; */
+  /* margin-right: 5rem; */
+  /* margin-left: 5rem; */
+  align-items: center;
+}
+
+.hero-text h1 span {
+  background-color: var(--orange95); /* Use custom variable for orange */
+  padding: 0.5rem;
+  padding-top: 0.1rem;
+  /* padding-bottom: 0.2rem; */
+  margin: 1rem;
+  font-size: 2rem;
+  border-radius: 3px;
+  align-items: center;
+}
+
+.highlight-text {
+  color: var(--orange50);
+}
+
+hero-text strong,
+h1 {
+  font-size: 2rem;
+  color: var(--gray10);
+  font-weight: 600;
+}
+
+.subtext {
+  color: var(--gray15);
+  font-size: 1.5rem;
+  /* text-align: center;   */
+  font-weight: 500;
+  /* line-height: 50px; */
+}
+.sub {
+  color: var(--gray15);
+  font-size: 0.9rem;
+  font-weight: 400px;
+}
+
+.buttons {
+  margin: 2rem;
+}
+
+.explore,
+.pricing {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+}
+
+.explore {
+  background-color: var(--orange50);
+  color: white;
+}
+.pricing {
+  background-color: var(--white95);
+}
+
+@media only screen and (max-width: 768px) {
+  .hero-container {
+    margin-inline: 2rem; /* Adjust margin for smaller screens */
+    padding: 3rem; /* Adjust padding */
+    padding-top: 3rem;
+    margin-top: 50px; /* Adjust margin-top */
+  }
+
+  .hero-text {
+    padding: 2rem; /* Adjust padding */
+    padding-top: 0.5rem;
+    margin-right: 2rem; /* Adjust margin-right */
+    margin-left: 2rem; /* Adjust margin-left */
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Decrease font size for smaller screens */
+  }
+
+  .hero-text h1 span {
+    padding-top: 0.1rem;
+    padding-bottom: 0.2rem;
+    margin: 1rem;
+    font-size: 1rem; /* Decrease font size for smaller screens */
+  }
+
+  .explore,
+  .pricing {
+    padding: 8px; /* Adjust padding */
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .hero-container {
+    margin-inline: 1rem; /* Adjust margin for smaller screens */
+    padding: 2rem; /* Adjust padding */
+    padding-top: 2rem;
+    margin-top: 30px; /* Adjust margin-top */
+  }
+
+  .hero-text {
+    padding: 1rem; /* Adjust padding */
+    padding-top: 0.5rem;
+    margin-right: 1rem; /* Adjust margin-right */
+    margin-left: 1rem; /* Adjust margin-left */
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 1.2rem; /* Decrease font size for smaller screens */
+  }
+
+  .hero-text h1 span {
+    padding-top: 0.1rem;
+    padding-bottom: 0.2rem;
+    margin: 0.5rem;
+    font-size: 0.8rem; /* Decrease font size for smaller screens */
+  }
+
+  .explore,
+  .pricing {
+    padding: 5px; /* Adjust padding */
+  }
+}
